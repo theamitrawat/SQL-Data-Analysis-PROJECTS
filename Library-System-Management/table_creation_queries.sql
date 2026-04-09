@@ -1,15 +1,17 @@
------ Library Management System Project 2
+CREATE DATABASE library_db;
 
------ creating Branch table
+DROP TABLE IF EXISTS branch;
 CREATE TABLE branch
 (
-   branch_id VARCHAR(10) PRIMARY KEY,
-   manager_id VARCHAR(10),
-   branch_address VARCHAR(30),
-   contact_no VARCHAR(15)
+    branch_id VARCHAR(10) PRIMARY KEY,
+    manager_id VARCHAR(10),
+    branch_address VARCHAR(30),
+    contact_no VARCHAR(15)
 );
 
------- creating Employees table
+
+-- Create table "Employee"
+DROP TABLE IF EXISTS employees;
 CREATE TABLE employees
 (
     emp_id VARCHAR(10) PRIMARY KEY,
@@ -20,7 +22,9 @@ CREATE TABLE employees
     FOREIGN KEY (branch_id) REFERENCES  branch(branch_id)
 );
 
----- creating members table
+
+-- Create table "Members"
+DROP TABLE IF EXISTS members;
 CREATE TABLE members
 (
     member_id VARCHAR(10) PRIMARY KEY,
@@ -29,7 +33,10 @@ CREATE TABLE members
     reg_date DATE
 );
 
------ creating books table
+
+
+-- Create table "Books"
+DROP TABLE IF EXISTS books;
 CREATE TABLE books
 (
     isbn VARCHAR(50) PRIMARY KEY,
@@ -41,7 +48,10 @@ CREATE TABLE books
     publisher VARCHAR(30)
 );
 
+
+
 -- Create table "IssueStatus"
+DROP TABLE IF EXISTS issued_status;
 CREATE TABLE issued_status
 (
     issued_id VARCHAR(10) PRIMARY KEY,
@@ -55,30 +65,16 @@ CREATE TABLE issued_status
     FOREIGN KEY (issued_book_isbn) REFERENCES books(isbn) 
 );
 
+
+
 -- Create table "ReturnStatus"
+DROP TABLE IF EXISTS return_status;
 CREATE TABLE return_status
 (
-    issued_id VARCHAR(30),
     return_id VARCHAR(10) PRIMARY KEY,
+    issued_id VARCHAR(30),
     return_book_name VARCHAR(80),
     return_date DATE,
     return_book_isbn VARCHAR(50),
     FOREIGN KEY (return_book_isbn) REFERENCES books(isbn)
 );
-
-
-SELECT * FROM books;
-SELECT * FROM branch;
-SELECT * FROM employees;
-SELECT * FROM issued_status;
-SELECT * FROM members;
-SELECT * FROM return_status;
-
-
-
-
-
-
-
-
-
